@@ -67,6 +67,49 @@ window._ = (function () {
         return false;
     };
 
+    _.constant = function (obj) {
+        // const x = obj;
+        return obj;
+    };
+
+    _.size = function (obj) {
+        if (_helper.isJson(obj))
+            return Object.keys(obj).length;
+
+        return obj.length;
+    };
+
+    _.toArray = function (obj) {
+        if (_helper.isArray(obj))
+            return obj;
+
+        let output = [];
+        if (_helper.isJson(obj)) {
+            const input = Object.values(obj);
+            _.forEach(input, (x) => output.push(x));
+        } else {
+            output.push(obj);
+        }
+
+        return output;
+    }
+
+    _.shuffle = function (list) {
+        let output = [];
+        debugger;
+        let input = _.toArray(list);
+
+        for (var i = input.length - 1; i >= 0; i--) {
+            output.push(input[i]);
+        }
+        return output;
+    }
+
+    _.sample = function(obj) {
+        throw new Error("not implemented");
+    }
+
+
     /****************************************
      ***** HELPERS
      ***************************************/
